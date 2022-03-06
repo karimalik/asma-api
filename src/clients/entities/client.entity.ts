@@ -1,5 +1,14 @@
 import { IsEmail } from "class-validator";
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
+import { 
+    Column, 
+    CreateDateColumn, 
+    DeleteDateColumn, 
+    Entity, 
+    OneToMany, 
+    PrimaryGeneratedColumn, 
+    Timestamp, 
+    UpdateDateColumn 
+} from "typeorm";
 
 /*
 * create the entity clients
@@ -36,7 +45,7 @@ export class Client {
     @Column()
     civilite: string;
 
-    @Column()
+    @Column({ unique: true })
     nom: string;
 
     @Column()
