@@ -13,6 +13,8 @@ import { SocieteModule } from './societe/societe.module';
 import { Societe } from './societe/entities/societe.entity';
 import { ActionPossibleModule } from './action-possible/action-possible.module';
 import { ActionPossible } from './action-possible/entities/action-possible.entity';
+import { TvaModule } from './tva/tva.module';
+import { Tva } from './tva/entities/tva.entity';
 
 const entities = [
   Client,
@@ -20,6 +22,8 @@ const entities = [
   Role,
   Societe,
   ActionPossible,
+  Tva,
+
 ]
 @Module({
   imports: [
@@ -51,6 +55,7 @@ const entities = [
     RolesModule,
     SocieteModule,
     ActionPossibleModule,
+    TvaModule,
   ],
   controllers: [AppController],
   providers: [AppService],
