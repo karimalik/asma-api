@@ -68,6 +68,7 @@ export class ClientsController {
   async remove(@Param('id') id: string) {
 
     await this.clientsService.remove(+id);
+    
     return { 
       statusCode: HttpStatus.OK,
       message: 'user deleted successfully',

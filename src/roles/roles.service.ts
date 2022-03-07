@@ -24,6 +24,10 @@ export class RolesService {
     return await this.roleRepository.find();
   }
 
+  /*
+  * this function read the data
+  * @params: id
+  */
   async findOne(id: number) {
 
     const readRole = await this.roleRepository.findOne({ where: { id: id } });
@@ -31,11 +35,25 @@ export class RolesService {
     return readRole;
   }
 
-  update(id: number, updateRoleDto: UpdateRoleDto) {
-    return `This action updates a #${id} role`;
+  /*
+  * this function update the data
+  * @Params: id
+  */
+  async update(id: number, updateRoleDto: UpdateRoleDto) {
+
+    await this.roleRepository.update({ id }, updateRoleDto);
+
+    return this.roleRepository.findOne({ id });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} role`;
+  /*
+  * this function delete the data in the database
+  * @Params: id
+  */
+  async remove(id: number) {
+
+    await this.roleRepository.delete({ id });
+    
+    return { deleted: true};
   }
 }
