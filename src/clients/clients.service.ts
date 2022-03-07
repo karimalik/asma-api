@@ -9,7 +9,10 @@ import { Client } from './entities/client.entity';
 export class ClientsService {
   constructor( @InjectRepository(Client) private clientRepository: Repository<Client>) {}
 
-  //create a new client
+  /*
+  * this function create new data
+  * @params: id, createClientDto
+  */
   async create(createClientDto: CreateClientDto): Promise<Client>{
     
     const client = this.clientRepository.create(createClientDto);
@@ -39,7 +42,7 @@ export class ClientsService {
 
   /*
   * this function update the data
-  * @Params: id
+  * @Params: id, updateClientDto
   */
   async update(id: number, updateClientDto: UpdateClientDto): Promise<Client> {
     
