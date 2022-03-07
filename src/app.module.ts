@@ -11,12 +11,15 @@ import { RolesModule } from './roles/roles.module';
 import { Role } from './roles/entities/role.entity';
 import { SocieteModule } from './societe/societe.module';
 import { Societe } from './societe/entities/societe.entity';
+import { ActionPossibleModule } from './action-possible/action-possible.module';
+import { ActionPossible } from './action-possible/entities/action-possible.entity';
 
 const entities = [
   Client,
   User,
   Role,
   Societe,
+  ActionPossible,
 ]
 @Module({
   imports: [
@@ -47,6 +50,7 @@ const entities = [
     UsersModule,
     RolesModule,
     SocieteModule,
+    ActionPossibleModule,
   ],
   controllers: [AppController],
   providers: [AppService],
