@@ -12,7 +12,7 @@ export class SocieteService {
 
   /*
   * this function create new data
-  * @params: id, createClientDto
+  * @params: createSocieteDto
   */
   async create(createSocieteDto: CreateSocieteDto) {
 

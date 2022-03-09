@@ -26,41 +26,38 @@ export class Societe {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({ type: 'varchar', nullable: true, unique: true})
     @IsNotEmpty()
     nom: string;
 
-    @Column()
+    @Column({ type: 'varchar', nullable: true })
     adresse: string;
 
-    @Column()
+    @Column({ type: 'varchar', nullable: true })
     ville: string;
 
-    @Column()
+    @Column({ type: 'varchar', nullable: true })
     telephone: string;
 
-    @Column()
+    @Column({ type: 'varchar', nullable: true })
     fax: string;
 
-    @Column()
+    @Column({ type: 'varchar', nullable: true })
     @IsEmail()
     email: string;
 
-    @Column()
+    @Column({ type: 'varchar', nullable: true })
     logo: string;
 
-    @Column()
+    @Column({ type: 'varchar', nullable: true })
     pays: string;
 
-    @Column()
+    @Column({ type: 'varchar', nullable: true })
     codePostal: string;
 
-    @CreateDateColumn()
+    @CreateDateColumn({ name: 'created_at'})
     createdAt: Date;
 
-    @UpdateDateColumn()
+    @UpdateDateColumn({ name: 'updated_at' })
     updatedAt: Date;
-
-    @DeleteDateColumn()
-    deletedAt: Date;
 }

@@ -22,7 +22,7 @@ import { ApiTags } from '@nestjs/swagger';
   * create, findAll, findOne, Update, remove
   * @Params: id, updateSocieteDto, createSocieteDto
 */
-@ApiTags('TVA resource')
+@ApiTags('TVA ressource')
 @Controller('tva')
 export class TvaController {
   constructor(private readonly tvaService: TvaService) {}

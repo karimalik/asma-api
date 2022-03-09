@@ -12,7 +12,7 @@ import { UpdateActionPossibleDto } from './dto/update-action-possible.dto';
   * create, findAll, findOne, Update, remove
   * @Params: id, updateSocieteDto, createSocieteDto
   */
-@ApiTags('Action possible resource')
+@ApiTags('Action possible ressource')
 @Controller('action-possible')
 export class ActionPossibleController {
   constructor(private readonly actionPossibleService: ActionPossibleService) {}

@@ -15,6 +15,8 @@ import { ActionPossibleModule } from './action-possible/action-possible.module';
 import { ActionPossible } from './action-possible/entities/action-possible.entity';
 import { TvaModule } from './tva/tva.module';
 import { Tva } from './tva/entities/tva.entity';
+import { FraisPortModule } from './frais-port/frais-port.module';
+import { FraisPort } from './frais-port/entities/frais-port.entity';
 
 const entities = [
   Client,
@@ -23,6 +25,7 @@ const entities = [
   Societe,
   ActionPossible,
   Tva,
+  FraisPort,
 
 ]
 @Module({
@@ -56,6 +59,7 @@ const entities = [
     SocieteModule,
     ActionPossibleModule,
     TvaModule,
+    FraisPortModule,
   ],
   controllers: [AppController],
   providers: [AppService],

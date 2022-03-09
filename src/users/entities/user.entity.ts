@@ -1,8 +1,7 @@
 import { 
     BeforeInsert,
     Column, 
-    CreateDateColumn, 
-    DeleteDateColumn, 
+    CreateDateColumn,
     Entity, 
     PrimaryGeneratedColumn, 
     UpdateDateColumn 
@@ -21,22 +20,19 @@ export class User {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ unique: true })
+    @Column({ type: 'varchar', nullable: true, unique: true })
     @IsEmail()
     @IsNotEmpty()
     email: string;
 
-    @Column()
+    @Column({ type: 'varchar', nullable: true })
     password: string;
 
-    @CreateDateColumn()
+    @CreateDateColumn({ name: 'created_at' })
     createdAt: Date;
 
-    @UpdateDateColumn()
+    @UpdateDateColumn({ name: 'updated_at' })
     updatedAt: Date;
-
-    @DeleteDateColumn()
-    deletedAt: Date;
 
     //hash password after insert
     @BeforeInsert()

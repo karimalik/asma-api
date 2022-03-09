@@ -13,16 +13,12 @@ export class Role {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ unique: true})
+    @Column({  type: 'varchar', nullable: true,  unique: true})
     nom: string;
 
-    @CreateDateColumn()
+    @CreateDateColumn({ name: 'created_at'})
     createdAt: Date;
 
-    @UpdateDateColumn()
+    @UpdateDateColumn({ name: 'updated_at'})
     updatedAt: Date;
-
-    @DeleteDateColumn()
-    deletedAt: Date;
-    
 }
