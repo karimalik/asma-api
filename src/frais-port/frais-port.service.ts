@@ -37,6 +37,11 @@ export class FraisPortService {
 
     const readFrais = await this.portRepositiry.findOne({ where: { id: id } });
 
+    //if the data does not exist
+    if (!readFrais) {
+      throw new NotFoundException(`The data with id #${id} was not found`);
+    }
+
     return readFrais;
   }
 

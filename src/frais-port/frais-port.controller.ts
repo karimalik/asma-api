@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, Put } from '@nestjs/common';
 import { FraisPortService } from './frais-port.service';
 import { CreateFraisPortDto } from './dto/create-frais-port.dto';
 import { UpdateFraisPortDto } from './dto/update-frais-port.dto';
@@ -23,17 +23,22 @@ export class FraisPortController {
 
     const createData = await this.fraisPortService.create(createFraisPortDto);
 
-    return { 
-      statusCode: HttpStatus.OK,
-      message: 'data added successfully',
-      createData
+    if (HttpStatus.OK) {
+      return {
+        message: 'data added successfully',
+        createData,
+      };
+    }else {
+      return {
+        message: 'error',
+      };
     }
   }
 
   @Get()
   async findAll() {
 
-    const ports = this.fraisPortService.findAll();
+    const ports = await this.fraisPortService.findAll();
 
     return { 
       statusCode: HttpStatus.OK,
@@ -45,24 +50,18 @@ export class FraisPortController {
   @Get(':id')
   async findOne(@Param('id') id: string) {
 
-    const port = this.fraisPortService.findOne(+id);
+    return await this.fraisPortService.findOne(+id);
 
-    return {
-      statusCode: HttpStatus.OK,
-      message: 'data fetched successfully',
-      port,
-    };
   }
 
-  @Patch(':id')
+  @Put(':id')
   async update(@Param('id') id: string, @Body() updateFraisPortDto: UpdateFraisPortDto) {
 
-    const update = await this.fraisPortService.update(+id, updateFraisPortDto);
+    await this.fraisPortService.update(+id, updateFraisPortDto);
 
     return {
       statusCode: HttpStatus.OK,
       message: 'data updated successfully',
-      update,
     };
   }
 

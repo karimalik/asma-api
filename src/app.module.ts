@@ -17,6 +17,7 @@ import { TvaModule } from './tva/tva.module';
 import { Tva } from './tva/entities/tva.entity';
 import { FraisPortModule } from './frais-port/frais-port.module';
 import { FraisPort } from './frais-port/entities/frais-port.entity';
+import { FamilleModule } from './famille/famille.module';
 
 const entities = [
   Client,
@@ -60,6 +61,7 @@ const entities = [
     ActionPossibleModule,
     TvaModule,
     FraisPortModule,
+    FamilleModule,
   ],
   controllers: [AppController],
   providers: [AppService],
