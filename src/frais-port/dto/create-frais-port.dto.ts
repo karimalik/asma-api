@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsNotEmpty } from "class-validator";
+import { Curry } from "src/curry/entities/curry.entity";
 
 export class CreateFraisPortDto {
     @ApiProperty()
@@ -12,4 +13,7 @@ export class CreateFraisPortDto {
     @ApiProperty()
     @IsNotEmpty()
     montant: string;
+
+    @ApiProperty()
+    curry: Curry;
 }

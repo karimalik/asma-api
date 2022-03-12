@@ -1,8 +1,11 @@
 import { IsNotEmpty } from "class-validator";
+import { Curry } from "src/curry/entities/curry.entity";
 import { 
     Column, 
     CreateDateColumn, 
     Entity, 
+    JoinColumn, 
+    OneToOne, 
     PrimaryGeneratedColumn, 
     UpdateDateColumn 
 } from "typeorm";
@@ -30,6 +33,10 @@ export class FraisPort {
     @Column({ type: 'varchar', nullable: true })
     @IsNotEmpty()
     montant: string;
+
+    @OneToOne(() => Curry, { cascade: true })
+    @JoinColumn()
+    curry: Curry;
 
     @CreateDateColumn({ name: 'created_at' })
     createdAt: Date;

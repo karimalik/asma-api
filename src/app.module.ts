@@ -18,6 +18,8 @@ import { Tva } from './tva/entities/tva.entity';
 import { FraisPortModule } from './frais-port/frais-port.module';
 import { FraisPort } from './frais-port/entities/frais-port.entity';
 import { FamilleModule } from './famille/famille.module';
+import { CurryModule } from './curry/curry.module';
+import { Curry } from './curry/entities/curry.entity';
 
 const entities = [
   Client,
@@ -27,6 +29,7 @@ const entities = [
   ActionPossible,
   Tva,
   FraisPort,
+  Curry,
 
 ]
 @Module({
@@ -62,6 +65,7 @@ const entities = [
     TvaModule,
     FraisPortModule,
     FamilleModule,
+    CurryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
