@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateSocieteDto } from './dto/create-societe.dto';
@@ -36,6 +36,10 @@ export class SocieteService {
 
     const readSociete = await this.societeRepository.findOne({ where: { id: id } });
 
+    if (!readSociete) {
+      throw new NotFoundException(`The data with id #${id} was not found`);
+    }
+
     return readSociete;
   }
 
@@ -45,10 +49,15 @@ export class SocieteService {
   */
   async update(id: number, updateSocieteDto: UpdateSocieteDto) {
 
+    const updateData = await this.societeRepository.findOne({ id });
+
+    if (!updateData) {
+      throw new NotFoundException('Not found')
+    }
+
     await this.societeRepository.update({ id }, updateSocieteDto);
 
-    
-    return await this.societeRepository.findOne({ id });
+    return updateData;
   }
 
   /*

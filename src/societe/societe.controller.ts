@@ -45,26 +45,30 @@ export class SocieteController {
   @Get()
   async findAll() {
 
-    const societes = await this.societeService.findAll();
+    return await this.societeService.findAll();
 
-    return { 
-      statusCode: HttpStatus.OK,
-      message: 'data fetched successfully',
-      societes
-     };
+    // const societes = await this.societeService.findAll();
+
+    // return { 
+    //   statusCode: HttpStatus.OK,
+    //   message: 'data fetched successfully',
+    //   societes
+    //  };
   }
 
   //route to read record
   @Get(':id')
   async findOne(@Param('id') id: string) {
 
-    const readData = await this.societeService.findOne(+id);
+    return await this.societeService.findOne(+id);
 
-    return{
-      statusCode: HttpStatus.OK,
-      message: 'data fetched successfully',
-      readData
-    };
+    // const readData = await this.societeService.findOne(+id);
+
+    // return{
+    //   statusCode: HttpStatus.OK,
+    //   message: 'data fetched successfully',
+    //   readData
+    // };
   }
 
   //route to upadte data

@@ -32,25 +32,29 @@ export class ClientsController {
   @Get()
   async findAll() {
 
-    const users = this.clientsService.findAll();
+    return await this.clientsService.findAll();
 
-    return { 
-      statusCode: HttpStatus.OK,
-      message: 'Clients fetched successfully',
-      users,
-    };
+    // const users = this.clientsService.findAll();
+
+    // return { 
+    //   statusCode: HttpStatus.OK,
+    //   message: 'Clients fetched successfully',
+    //   users,
+    // };
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
 
-    const data = this.clientsService.findOne(+id);
+    return await this.clientsService.findOne(+id);
 
-    return {
-      statusCode: HttpStatus.OK,
-      message: 'user fetched successfully',
-      data,
-    };
+    // const data = this.clientsService.findOne(+id);
+
+    // return {
+    //   statusCode: HttpStatus.OK,
+    //   message: 'user fetched successfully',
+    //   data,
+    // };
   }
 
   @Put(':id')

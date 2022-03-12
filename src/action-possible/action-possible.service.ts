@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateActionPossibleDto } from './dto/create-action-possible.dto';
@@ -37,6 +37,10 @@ export class ActionPossibleService {
 
     const readData = await this.actionRepository.findOne({ where: { id: id } });
 
+    if (!readData) {
+      throw new NotFoundException(`The data with id #${id} was not found`);
+    }
+
     return readData;
   }
 
@@ -46,9 +50,15 @@ export class ActionPossibleService {
   */
   async update(id: number, updateActionPossibleDto: UpdateActionPossibleDto) {
 
+    const updateData = await this.actionRepository.findOne({ id });
+
+    if (!updateData) {
+      throw new NotFoundException('Not found');
+    }
+
     await this.actionRepository.update({ id }, updateActionPossibleDto);
 
-    return await this.actionRepository.findOne({ id });
+    return updateData;
   }
 
   /*

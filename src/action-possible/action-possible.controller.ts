@@ -34,26 +34,30 @@ export class ActionPossibleController {
   @Get()
   async findAll() {
 
-    const actions = await this.actionPossibleService.findAll();
+    return await this.actionPossibleService.findAll();
 
-    return {
-      statusCode: HttpStatus.OK,
-      message: 'data fetched successfully',
-      actions
-    } ;
+    // const actions = await this.actionPossibleService.findAll();
+
+    // return {
+    //   statusCode: HttpStatus.OK,
+    //   message: 'data fetched successfully',
+    //   actions
+    // } ;
   }
 
   //route to read data by id
   @Get(':id')
   async findOne(@Param('id') id: string) {
 
-    const action = await this.actionPossibleService.findOne(+id);
+    return await this.actionPossibleService.findOne(+id);
+
+    // const action = await this.actionPossibleService.findOne(+id);
     
-    return {
-      statusCode: HttpStatus.OK,
-      message: 'data fetched successfully',
-      action
-    } ;
+    // return {
+    //   statusCode: HttpStatus.OK,
+    //   message: 'data fetched successfully',
+    //   action
+    // } ;
   }
 
   //route to update data

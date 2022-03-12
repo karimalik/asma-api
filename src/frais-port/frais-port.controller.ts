@@ -38,13 +38,15 @@ export class FraisPortController {
   @Get()
   async findAll() {
 
-    const ports = await this.fraisPortService.findAll();
+    return await this.fraisPortService.findAll();
 
-    return { 
-      statusCode: HttpStatus.OK,
-      message: 'data fetched successfully',
-      ports,
-     };
+    // const ports = await this.fraisPortService.findAll();
+
+    // return { 
+    //   statusCode: HttpStatus.OK,
+    //   message: 'data fetched successfully',
+    //   ports,
+    //  };
   }
 
   @Get(':id')

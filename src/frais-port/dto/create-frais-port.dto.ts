@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsNotEmpty } from "class-validator";
-import { Curry } from "src/curry/entities/curry.entity";
+import { Curry } from "src/utils/curry.enum";
 
 export class CreateFraisPortDto {
     @ApiProperty()

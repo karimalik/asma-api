@@ -5,8 +5,6 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ClientsModule } from './clients/clients.module';
 import { Client } from './clients/entities/client.entity';
-import { UsersModule } from './users/users.module';
-import { User } from './users/entities/user.entity';
 import { RolesModule } from './roles/roles.module';
 import { Role } from './roles/entities/role.entity';
 import { SocieteModule } from './societe/societe.module';
@@ -20,16 +18,17 @@ import { FraisPort } from './frais-port/entities/frais-port.entity';
 import { FamilleModule } from './famille/famille.module';
 import { CurryModule } from './curry/curry.module';
 import { Curry } from './curry/entities/curry.entity';
+import { Famille } from './famille/entities/famille.entity';
 
 const entities = [
   Client,
-  User,
   Role,
   Societe,
   ActionPossible,
   Tva,
   FraisPort,
   Curry,
+  Famille,
 
 ]
 @Module({
@@ -58,7 +57,6 @@ const entities = [
       "entities": entities,
     }),
     ClientsModule,
-    UsersModule,
     RolesModule,
     SocieteModule,
     ActionPossibleModule,

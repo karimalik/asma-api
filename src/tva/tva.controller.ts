@@ -44,26 +44,30 @@ export class TvaController {
   @Get()
   async findAll() {
 
-    const allData = await this.tvaService.findAll();
+    return await await this.tvaService.findAll();
 
-    return {
-      statusCode: HttpStatus.OK,
-      message: 'data fetched successfully',
-      allData
-    };
+    // const allData = await this.tvaService.findAll();
+
+    // return {
+    //   statusCode: HttpStatus.OK,
+    //   message: 'data fetched successfully',
+    //   allData
+    // };
   }
 
   //route to read data
   @Get(':id')
   async findOne(@Param('id') id: string) {
 
-    const data = await this.tvaService.findOne(+id);
+    return await this.tvaService.findOne(+id);
 
-    return {
-      statusCode: HttpStatus.OK,
-      message: 'data fetched successfully',
-      data
-    };
+    // const data = await this.tvaService.findOne(+id);
+
+    // return {
+    //   statusCode: HttpStatus.OK,
+    //   message: 'data fetched successfully',
+    //   data
+    // };
   }
 
   //route to update data

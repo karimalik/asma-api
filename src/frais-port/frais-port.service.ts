@@ -51,9 +51,13 @@ export class FraisPortService {
   */
   async update(id: number, updateFraisPortDto: UpdateFraisPortDto) {
 
-    const editFrais = await this.portRepositiry.update({ id }, updateFraisPortDto);
+    const editFrais = await this.portRepositiry.findOne({ id });
 
-    await this.portRepositiry.findOne({ id });
+    if (!editFrais) {
+      throw new NotFoundException('Not found');
+    }
+    
+    await this.portRepositiry.update({ id }, updateFraisPortDto);
 
     return editFrais;
 

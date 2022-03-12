@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateTvaDto } from './dto/create-tva.dto';
@@ -36,6 +36,10 @@ export class TvaService {
 
     const readData = await this.tvaRepository.findOne({ where: { id: id } });
 
+    if (!readData) {
+      throw new NotFoundException(`The data with id #${id} was not found`);
+    }
+
     return readData;
   }
 
@@ -45,9 +49,15 @@ export class TvaService {
   */
   async update(id: number, updateTvaDto: UpdateTvaDto) {
 
+    const updateData = await this.tvaRepository.findOne({ id }) ;
+
+    if (!updateData) {
+      throw new NotFoundException('Not found');
+    }
+    
     await this.tvaRepository.update({ id }, updateTvaDto);
 
-    return await this.tvaRepository.findOne({ id }) ;
+    return updateData;
   }
 
   /*

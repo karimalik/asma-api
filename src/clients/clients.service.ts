@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateClientDto } from './dto/create-client.dto';
@@ -37,6 +37,10 @@ export class ClientsService {
 
     const readUser = await this.clientRepository.findOne({ where: { id: id } });
 
+    if (!readUser) {
+      throw new NotFoundException(`The data with id #${id} was not found`);
+    }
+
     return readUser;
   }
 
@@ -46,9 +50,15 @@ export class ClientsService {
   */
   async update(id: number, updateClientDto: UpdateClientDto): Promise<Client> {
     
+    const updateData = await this.clientRepository.findOne({ id });
+
+    if (!updateData) {
+      throw new NotFoundException('Not found')
+    }
+
     await this.clientRepository.update({ id }, updateClientDto);
 
-    return await this.clientRepository.findOne({ id });
+    return updateData;
   }
 
   /*
