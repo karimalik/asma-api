@@ -19,6 +19,8 @@ import { FamilleModule } from './famille/famille.module';
 import { CurryModule } from './curry/curry.module';
 import { Curry } from './curry/entities/curry.entity';
 import { Famille } from './famille/entities/famille.entity';
+import { ModeLivraisonModule } from './mode-livraison/mode-livraison.module';
+import { ModeLivraison } from './mode-livraison/entities/mode-livraison.entity';
 
 const entities = [
   Client,
@@ -29,6 +31,7 @@ const entities = [
   FraisPort,
   Curry,
   Famille,
+  ModeLivraison,
 
 ]
 @Module({
@@ -64,6 +67,7 @@ const entities = [
     FraisPortModule,
     FamilleModule,
     CurryModule,
+    ModeLivraisonModule,
   ],
   controllers: [AppController],
   providers: [AppService],
