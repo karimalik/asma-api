@@ -69,7 +69,7 @@ export class FamilleService {
     // return updateData;
   }
 
-   /*
+  /*
   * this function delete the data 
   * @Params: id
   */

@@ -23,6 +23,8 @@ import { ModeLivraisonModule } from './mode-livraison/mode-livraison.module';
 import { ModeLivraison } from './mode-livraison/entities/mode-livraison.entity';
 import { ModeReglementModule } from './mode-reglement/mode-reglement.module';
 import { ModeReglement } from './mode-reglement/entities/mode-reglement.entity';
+import { FournisseurModule } from './fournisseur/fournisseur.module';
+import { Fournisseur } from './fournisseur/entities/fournisseur.entity';
 
 const entities = [
   Client,
@@ -35,6 +37,7 @@ const entities = [
   Famille,
   ModeLivraison,
   ModeReglement,
+  Fournisseur
 
 ]
 @Module({
@@ -72,6 +75,7 @@ const entities = [
     CurryModule,
     ModeLivraisonModule,
     ModeReglementModule,
+    FournisseurModule,
   ],
   controllers: [AppController],
   providers: [AppService],
