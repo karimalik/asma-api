@@ -19,7 +19,7 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[asma](https://asma.comt) asma is a commercial management software package. it allows individuals, SMEs and startups to manage their commercial activity.
 
 ## Installation
 
