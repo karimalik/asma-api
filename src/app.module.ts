@@ -26,6 +26,7 @@ import { ModeReglement } from './mode-reglement/entities/mode-reglement.entity';
 import { FournisseurModule } from './fournisseur/fournisseur.module';
 import { Fournisseur } from './fournisseur/entities/fournisseur.entity';
 import { UsersModule } from './users/users.module';
+import { User } from './users/entities/user.entity';
 
 const entities = [
   Client,
@@ -38,7 +39,8 @@ const entities = [
   Famille,
   ModeLivraison,
   ModeReglement,
-  Fournisseur
+  Fournisseur,
+  User,
 
 ]
 @Module({

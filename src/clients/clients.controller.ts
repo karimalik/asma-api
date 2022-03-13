@@ -1,5 +1,7 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, Put, UseGuards } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { User } from 'src/shared/decorators/user.decorator';
+import { JwtAuthGuard } from 'src/users/guard/jwt-auth.guard';
 import { ClientsService } from './clients.service';
 import { CreateClientDto } from './dto/create-client.dto';
 import { UpdateClientDto } from './dto/update-client.dto';
@@ -19,9 +21,10 @@ export class ClientsController {
   * @Params: id
   */
   @Post()
-  async create(@Body() createClientDto: CreateClientDto) {
+  @UseGuards(JwtAuthGuard)
+  async create(@Body() createClientDto: CreateClientDto, @User() user) {
 
-    const client = await this.clientsService.create(createClientDto);
+    const client = await this.clientsService.create(createClientDto, user);
     return {
      statusCode: HttpStatus.OK,
      message: 'client create successfully',
@@ -30,38 +33,31 @@ export class ClientsController {
   }
 
   @Get()
+  @UseGuards(JwtAuthGuard)
   async findAll() {
 
     return await this.clientsService.findAll();
 
-    // const users = this.clientsService.findAll();
-
-    // return { 
-    //   statusCode: HttpStatus.OK,
-    //   message: 'Clients fetched successfully',
-    //   users,
-    // };
   }
 
   @Get(':id')
+  @UseGuards(JwtAuthGuard)
   async findOne(@Param('id') id: string) {
 
     return await this.clientsService.findOne(+id);
 
-    // const data = this.clientsService.findOne(+id);
-
-    // return {
-    //   statusCode: HttpStatus.OK,
-    //   message: 'user fetched successfully',
-    //   data,
-    // };
   }
 
   @Put(':id')
+  @UseGuards(JwtAuthGuard)
   // @ApiBody({ description: "update the record"})
-  async update(@Param('id') id: string, @Body() updateClientDto: UpdateClientDto) {
+  async update(
+    @Param('id') id: string, 
+    @Body() updateClientDto: UpdateClientDto,
+    @User() user
+    ) {
 
-    await this.clientsService.update(+id, updateClientDto);
+    await this.clientsService.update(+id, updateClientDto, user);
     return { 
       statusCode: HttpStatus.OK,
       message: 'user updated successfully'
@@ -69,6 +65,7 @@ export class ClientsController {
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthGuard)
   async remove(@Param('id') id: string) {
 
     await this.clientsService.remove(+id);

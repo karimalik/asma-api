@@ -1,9 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, Put, UseGuards } from '@nestjs/common';
 import { FamilleService } from './famille.service';
 import { CreateFamilleDto } from './dto/create-famille.dto';
 import { UpdateFamilleDto } from './dto/update-famille.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { Famille } from './entities/famille.entity';
+import { JwtAuthGuard } from 'src/users/guard/jwt-auth.guard';
 
 /*
   * Route & controllers
@@ -19,24 +20,28 @@ export class FamilleController {
   constructor(private readonly familleService: FamilleService) {}
 
   @Post()
+  @UseGuards(JwtAuthGuard)
   async create(@Body() createFamilleDto: CreateFamilleDto): Promise<Famille>  {
 
     return await  this.familleService.create(createFamilleDto);
   }
 
   @Get()
+  @UseGuards(JwtAuthGuard)
   async findAll(): Promise<Famille[]>  {
 
     return await this.familleService.findAll();
   }
 
   @Get(':id')
+  @UseGuards(JwtAuthGuard)
   async findOne(@Param('id') id: string) {
 
     return await this.familleService.findOne(+id);
   }
 
   @Put(':id')
+  @UseGuards(JwtAuthGuard)
   async update(@Param('id') id: string, @Body() updateFamilleDto: UpdateFamilleDto) {
 
     await this.familleService.update(+id, updateFamilleDto);
@@ -60,6 +65,7 @@ export class FamilleController {
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthGuard)
   async remove(@Param('id') id: string) {
     
     await this.familleService.remove(+id);

@@ -1,8 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, Put, UseGuards } from '@nestjs/common';
 import { ModeReglementService } from './mode-reglement.service';
 import { CreateModeReglementDto } from './dto/create-mode-reglement.dto';
 import { UpdateModeReglementDto } from './dto/update-mode-reglement.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/users/guard/jwt-auth.guard';
 
 
 /*
@@ -19,6 +20,7 @@ export class ModeReglementController {
   constructor(private readonly modeReglementService: ModeReglementService) {}
 
   @Post()
+  @UseGuards(JwtAuthGuard)
   async create(@Body() createModeReglementDto: CreateModeReglementDto) {
 
     const createData = await this.modeReglementService.create(createModeReglementDto);
@@ -31,16 +33,19 @@ export class ModeReglementController {
   }
 
   @Get()
+  @UseGuards(JwtAuthGuard)
   async findAll() {
     return await this.modeReglementService.findAll();
   }
 
   @Get(':id')
+  @UseGuards(JwtAuthGuard)
   async findOne(@Param('id') id: string) {
     return await this.modeReglementService.findOne(+id);
   }
 
   @Put(':id')
+  @UseGuards(JwtAuthGuard)
   async update(@Param('id') id: string, @Body() updateModeReglementDto: UpdateModeReglementDto) {
 
     const updateData = await this.modeReglementService.update(+id, updateModeReglementDto);
@@ -52,6 +57,7 @@ export class ModeReglementController {
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthGuard)
   async remove(@Param('id') id: string) {
 
     const deleteData = await this.modeReglementService.remove(+id);

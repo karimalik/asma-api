@@ -1,8 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Put, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put, HttpStatus, UseGuards } from '@nestjs/common';
 import { FournisseurService } from './fournisseur.service';
 import { CreateFournisseurDto } from './dto/create-fournisseur.dto';
 import { UpdateFournisseurDto } from './dto/update-fournisseur.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/users/guard/jwt-auth.guard';
 
 /*
   * Route & controllers
@@ -18,6 +19,7 @@ export class FournisseurController {
   constructor(private readonly fournisseurService: FournisseurService) {}
 
   @Post()
+  @UseGuards(JwtAuthGuard)
   async create(@Body() createFournisseurDto: CreateFournisseurDto) {
 
     const createData = await this.fournisseurService.create(createFournisseurDto);
@@ -30,16 +32,19 @@ export class FournisseurController {
   }
 
   @Get()
+  @UseGuards(JwtAuthGuard)
   async findAll() {
     return await this.fournisseurService.findAll();
   }
 
   @Get(':id')
+  @UseGuards(JwtAuthGuard)
   async findOne(@Param('id') id: string) {
     return await this.fournisseurService.findOne(+id);
   }
 
   @Put(':id')
+  @UseGuards(JwtAuthGuard)
   async update(@Param('id') id: string, @Body() updateFournisseurDto: UpdateFournisseurDto) {
 
     await this.fournisseurService.update(+id, updateFournisseurDto);
@@ -51,6 +56,7 @@ export class FournisseurController {
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthGuard)
   async remove(@Param('id') id: string) {
 
     await this.fournisseurService.remove(+id);

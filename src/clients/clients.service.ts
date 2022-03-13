@@ -13,11 +13,14 @@ export class ClientsService {
   * this function create new data
   * @params: id, createClientDto
   */
-  async create(createClientDto: CreateClientDto): Promise<Client>{
+  async create(createClientDto: CreateClientDto, user): Promise<Client>{
     
     const client = this.clientRepository.create(createClientDto);
 
-    await this.clientRepository.save(createClientDto);
+    client.SaisirPar = user.nom;
+    // client.AuteurModif = user.nom;
+
+    await this.clientRepository.save(client);
 
     return client;
   }
@@ -48,13 +51,15 @@ export class ClientsService {
   * this function update the data
   * @Params: id, updateClientDto
   */
-  async update(id: number, updateClientDto: UpdateClientDto): Promise<Client> {
+  async update(id: number, updateClientDto: UpdateClientDto, user): Promise<Client> {
     
     const updateData = await this.clientRepository.findOne({ id });
 
     if (!updateData) {
       throw new NotFoundException('Not found')
     }
+
+    updateClientDto.AuteurModif = user.nom;
 
     await this.clientRepository.update({ id }, updateClientDto);
 

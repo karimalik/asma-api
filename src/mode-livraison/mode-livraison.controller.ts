@@ -1,8 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, Put, UseGuards } from '@nestjs/common';
 import { ModeLivraisonService } from './mode-livraison.service';
 import { CreateModeLivraisonDto } from './dto/create-mode-livraison.dto';
 import { UpdateModeLivraisonDto } from './dto/update-mode-livraison.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/users/guard/jwt-auth.guard';
 
 /*
   * Route & controllers
@@ -18,6 +19,7 @@ export class ModeLivraisonController {
   constructor(private readonly modeLivraisonService: ModeLivraisonService) {}
 
   @Post()
+  @UseGuards(JwtAuthGuard)
   async create(@Body() createModeLivraisonDto: CreateModeLivraisonDto) {
 
     const createData = await this.modeLivraisonService.create(createModeLivraisonDto);
@@ -30,16 +32,19 @@ export class ModeLivraisonController {
   }
 
   @Get()
+  @UseGuards(JwtAuthGuard)
   async findAll() {
     return await this.modeLivraisonService.findAll();
   }
 
   @Get(':id')
+  @UseGuards(JwtAuthGuard)
   async findOne(@Param('id') id: string) {
     return await this.modeLivraisonService.findOne(+id);
   }
 
   @Put(':id')
+  @UseGuards(JwtAuthGuard)
   async update(@Param('id') id: string, @Body() updateModeLivraisonDto: UpdateModeLivraisonDto) {
 
     await this.modeLivraisonService.update(+id, updateModeLivraisonDto);
@@ -51,6 +56,7 @@ export class ModeLivraisonController {
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthGuard)
   async remove(@Param('id') id: string) {
 
     await this.modeLivraisonService.remove(+id);

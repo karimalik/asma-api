@@ -7,12 +7,14 @@ import {
   Param, 
   Delete, 
   HttpStatus, 
-  Put
+  Put,
+  UseGuards
 } from '@nestjs/common';
 import { TvaService } from './tva.service';
 import { CreateTvaDto } from './dto/create-tva.dto';
 import { UpdateTvaDto } from './dto/update-tva.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/users/guard/jwt-auth.guard';
 
 /*
   * Route & controllers
@@ -29,6 +31,7 @@ export class TvaController {
 
   //route to create new record
   @Post()
+  @UseGuards(JwtAuthGuard)
   async create(@Body() createTvaDto: CreateTvaDto) {
 
     const tva = await this.tvaService.create(createTvaDto);
@@ -42,36 +45,23 @@ export class TvaController {
 
   //route to read all data
   @Get()
+  @UseGuards(JwtAuthGuard)
   async findAll() {
 
     return await await this.tvaService.findAll();
-
-    // const allData = await this.tvaService.findAll();
-
-    // return {
-    //   statusCode: HttpStatus.OK,
-    //   message: 'data fetched successfully',
-    //   allData
-    // };
   }
 
   //route to read data
   @Get(':id')
+  @UseGuards(JwtAuthGuard)
   async findOne(@Param('id') id: string) {
 
     return await this.tvaService.findOne(+id);
-
-    // const data = await this.tvaService.findOne(+id);
-
-    // return {
-    //   statusCode: HttpStatus.OK,
-    //   message: 'data fetched successfully',
-    //   data
-    // };
   }
 
   //route to update data
   @Put(':id')
+  @UseGuards(JwtAuthGuard)
   async update(@Param('id') id: string, @Body() updateTvaDto: UpdateTvaDto) {
 
     await this.tvaService.update(+id, updateTvaDto);
@@ -84,6 +74,7 @@ export class TvaController {
 
   //route to delete data
   @Delete(':id')
+  @UseGuards(JwtAuthGuard)
   async remove(@Param('id') id: string) {
 
     await this.tvaService.remove(+id);
