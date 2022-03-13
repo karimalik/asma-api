@@ -2,6 +2,9 @@ import { ApiProperty } from "@nestjs/swagger";
 
 export class CreateFournisseurDto {
     @ApiProperty()
+    numFournisseur: string;
+
+    @ApiProperty()
     Societe: string;
 
     @ApiProperty()

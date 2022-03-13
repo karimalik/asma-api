@@ -3,6 +3,9 @@ import { CreateFournisseurDto } from './create-fournisseur.dto';
 
 export class UpdateFournisseurDto extends PartialType(CreateFournisseurDto) {
     @ApiProperty()
+    numFournisseur: string;
+    
+    @ApiProperty()
     Societe: string;
 
     @ApiProperty()

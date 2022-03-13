@@ -20,13 +20,16 @@ export class Fournisseur {
     @PrimaryGeneratedColumn()
     id: number;
 
+    @Column({ type: 'varchar', nullable: true,  unique: true })
+    numFournisseur: string;
+
     @Column({ type: 'varchar', nullable: true })
     Societe: string;
 
     @Column({ type: 'varchar', nullable: true })
     civilite: string;
 
-    @Column({ type: 'varchar', nullable: true,  unique: true })
+    @Column({ type: 'varchar', nullable: true })
     nom: string;
 
     @Column({ type: 'varchar', nullable: true })
