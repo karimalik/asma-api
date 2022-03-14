@@ -71,4 +71,36 @@ export class ActionPossibleService {
 
     return { deleted: true };
   }
+
+  async findById(id: number) {
+    const verify = await this.actionRepository.findOne(id);
+    if (!verify) {
+      throw new NotFoundException('the data does not exist');
+    }
+    return verify;
+  }
+
+  //function for partial delete
+  async softDeleteData(id: number) {
+
+    const deleteResponse = await this.actionRepository.softDelete(id);
+
+    if (!deleteResponse) {
+      throw new NotFoundException('not exists');
+    }
+
+    return deleteResponse;
+  }
+
+  async restoreData(id: number) {
+
+    const restoreData = await this.actionRepository.restore(id);
+
+    if (!restoreData) {
+
+      throw new NotFoundException('not exists');
+    }
+
+    return restoreData;
+  }
 }

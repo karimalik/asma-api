@@ -73,4 +73,27 @@ export class FraisPortService {
 
     return {deleted: true};
   }
+
+  async softDeleteData(id: number) {
+
+    const deleteResponse = await this.portRepositiry.softDelete(id);
+
+    if (!deleteResponse) {
+      throw new NotFoundException('not exists');
+    }
+
+    return deleteResponse;
+  }
+
+  async restoreData(id: number) {
+
+    const restoreData = await this.portRepositiry.restore(id);
+
+    if (!restoreData) {
+
+      throw new NotFoundException('not exists');
+    }
+
+    return restoreData;
+  }
 }

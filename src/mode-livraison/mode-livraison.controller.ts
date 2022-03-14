@@ -66,4 +66,24 @@ export class ModeLivraisonController {
       message: 'data deleted successfully',
     };
   }
+
+  @Delete('remove/:id')
+  @UseGuards(JwtAuthGuard)
+  async DeleteData(@Param('id') id: number) {
+
+    return await this.modeLivraisonService.softDeleteData(id);
+
+  }
+
+  @Get('restore/:id')
+  @UseGuards(JwtAuthGuard)
+  async restoreResponse(@Param('id') id: string) {
+
+    await this.modeLivraisonService.restoreData(+id);
+
+    return {
+      statusCode: HttpStatus.OK,
+      message: 'data restored successfully',
+    };
+  }
 }

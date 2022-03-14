@@ -71,4 +71,27 @@ export class ModeLivraisonService {
 
     return { deleted: true};
   }
+
+  async softDeleteData(id: number) {
+
+    const deleteResponse = await this.livraisonRepository.softDelete(id);
+
+    if (!deleteResponse) {
+      throw new NotFoundException('not exists');
+    }
+
+    return deleteResponse;
+  }
+
+  async restoreData(id: number) {
+
+    const restoreData = await this.livraisonRepository.restore(id);
+
+    if (!restoreData) {
+
+      throw new NotFoundException('not exists');
+    }
+
+    return restoreData;
+  }
 }

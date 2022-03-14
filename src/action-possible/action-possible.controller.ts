@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, Put, UseGuards } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiTags, PartialType } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/users/guard/jwt-auth.guard';
 import { ActionPossibleService } from './action-possible.service';
 import { CreateActionPossibleDto } from './dto/create-action-possible.dto';
@@ -15,6 +15,7 @@ import { UpdateActionPossibleDto } from './dto/update-action-possible.dto';
   */
 @ApiTags('Action possible ressource')
 @Controller('action-possible')
+@UseGuards(JwtAuthGuard)
 export class ActionPossibleController {
   constructor(private readonly actionPossibleService: ActionPossibleService) {}
 
@@ -88,5 +89,26 @@ export class ActionPossibleController {
       statusCode: HttpStatus.OK,
       message: 'data deleted successfully',
     } ;
+  }
+
+  //delete data temporery
+  @Delete('remove/:id')
+  @UseGuards(JwtAuthGuard)
+  async DeleteData(@Param('id') id: number) {
+
+    return await this.actionPossibleService.softDeleteData(id);
+
+  }
+
+  @Get('restore/:id')
+  @UseGuards(JwtAuthGuard)
+  async restoreResponse(@Param('id') id: string) {
+
+    await this.actionPossibleService.restoreData(+id);
+
+    return {
+      statusCode: HttpStatus.OK,
+      message: 'data restored successfully',
+    };
   }
 }

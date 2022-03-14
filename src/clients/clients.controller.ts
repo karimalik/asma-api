@@ -75,4 +75,24 @@ export class ClientsController {
       message: 'user deleted successfully',
     } ;
   }
+
+  @Delete('remove/:id')
+  @UseGuards(JwtAuthGuard)
+  async DeleteData(@Param('id') id: number) {
+
+    return await this.clientsService.softDeleteData(id);
+
+  }
+
+  @Get('restore/:id')
+  @UseGuards(JwtAuthGuard)
+  async restoreResponse(@Param('id') id: string) {
+
+    await this.clientsService.restoreData(+id);
+
+    return {
+      statusCode: HttpStatus.OK,
+      message: 'data restored successfully',
+    };
+  }
 }

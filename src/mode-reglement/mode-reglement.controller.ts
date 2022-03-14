@@ -67,4 +67,25 @@ export class ModeReglementController {
       message: 'data deleted successfully',
     }; 
   }
+
+  
+  @Delete('remove/:id')
+  @UseGuards(JwtAuthGuard)
+  async DeleteData(@Param('id') id: number) {
+
+    return await this.modeReglementService.softDeleteData(id);
+
+  }
+
+  @Get('restore/:id')
+  @UseGuards(JwtAuthGuard)
+  async restoreResponse(@Param('id') id: string) {
+
+    await this.modeReglementService.restoreData(+id);
+
+    return {
+      statusCode: HttpStatus.OK,
+      message: 'data restored successfully',
+    };
+  }
 }

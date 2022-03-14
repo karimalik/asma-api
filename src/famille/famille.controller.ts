@@ -50,18 +50,6 @@ export class FamilleController {
       statusCode: HttpStatus.OK,
       message: 'data updated successfully',
     };
-
-    // if (HttpStatus.OK) {
-    //   return {
-    //     message: 'data updated successfully',
-    //   };
-    // }
-
-    // if (HttpStatus.NOT_FOUND) {
-    //   return {
-    //     message: 'Error',
-    //   };
-    // }
   }
 
   @Delete(':id')
@@ -73,6 +61,26 @@ export class FamilleController {
     return {
       statusCode: HttpStatus.OK,
       message: 'data deleted successfully',
+    };
+  }
+
+  @Delete('remove/:id')
+  @UseGuards(JwtAuthGuard)
+  async DeleteData(@Param('id') id: number) {
+
+    return await this.familleService.softDeleteData(id);
+
+  }
+
+  @Get('restore/:id')
+  @UseGuards(JwtAuthGuard)
+  async restoreResponse(@Param('id') id: string) {
+
+    await this.familleService.restoreData(+id);
+
+    return {
+      statusCode: HttpStatus.OK,
+      message: 'data restored successfully',
     };
   }
 }

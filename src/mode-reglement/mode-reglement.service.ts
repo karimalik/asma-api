@@ -71,4 +71,27 @@ export class ModeReglementService {
 
     return { deleted: true };
   }
+
+  async softDeleteData(id: number) {
+
+    const deleteResponse = await this.reglementRepository.softDelete(id);
+
+    if (!deleteResponse) {
+      throw new NotFoundException('not exists');
+    }
+
+    return deleteResponse;
+  }
+
+  async restoreData(id: number) {
+
+    const restoreData = await this.reglementRepository.restore(id);
+
+    if (!restoreData) {
+
+      throw new NotFoundException('not exists');
+    }
+
+    return restoreData;
+  }
 }

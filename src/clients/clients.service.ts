@@ -76,4 +76,27 @@ export class ClientsService {
 
     return{ deleted: true };
   }
+
+  async softDeleteData(id: number) {
+
+    const deleteResponse = await this.clientRepository.softDelete(id);
+
+    if (!deleteResponse) {
+      throw new NotFoundException('not exists');
+    }
+
+    return deleteResponse;
+  }
+
+  async restoreData(id: number) {
+
+    const restoreData = await this.clientRepository.restore(id);
+
+    if (!restoreData) {
+
+      throw new NotFoundException('not exists');
+    }
+
+    return restoreData;
+  }
 }

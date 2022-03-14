@@ -79,4 +79,27 @@ export class FamilleService {
 
     return {delete: true};
   }
+
+  async softDeleteData(id: number) {
+
+    const deleteResponse = await this.familleRepository.softDelete(id);
+
+    if (!deleteResponse) {
+      throw new NotFoundException('not exists');
+    }
+
+    return deleteResponse;
+  }
+
+  async restoreData(id: number) {
+
+    const restoreData = await this.familleRepository.restore(id);
+
+    if (!restoreData) {
+
+      throw new NotFoundException('not exists');
+    }
+
+    return restoreData;
+  }
 }

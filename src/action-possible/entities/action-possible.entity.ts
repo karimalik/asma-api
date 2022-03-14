@@ -1,5 +1,5 @@
 import { IsNotEmpty } from "class-validator";
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 /*
 * create the entity clients
@@ -19,4 +19,7 @@ export class ActionPossible {
 
     @UpdateDateColumn({ name: 'updated_at' })
     updatedAt: Date;
+
+    @DeleteDateColumn({ name: 'deleted_at' })
+    deletedAt: Date;
 }
