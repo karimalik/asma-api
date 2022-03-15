@@ -27,6 +27,8 @@ import { FournisseurModule } from './fournisseur/fournisseur.module';
 import { Fournisseur } from './fournisseur/entities/fournisseur.entity';
 import { UsersModule } from './users/users.module';
 import { User } from './users/entities/user.entity';
+import { AdresseLivraisonModule } from './adresse-livraison/adresse-livraison.module';
+import { AdresseLivraison } from './adresse-livraison/entities/adresse-livraison.entity';
 
 const entities = [
   Client,
@@ -41,6 +43,7 @@ const entities = [
   ModeReglement,
   Fournisseur,
   User,
+  AdresseLivraison,
 
 ]
 @Module({
@@ -80,6 +83,7 @@ const entities = [
     ModeReglementModule,
     FournisseurModule,
     UsersModule,
+    AdresseLivraisonModule,
   ],
   controllers: [AppController],
   providers: [AppService],

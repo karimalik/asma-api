@@ -7,8 +7,8 @@ import {
     UpdateDateColumn 
 } from "typeorm";
 
-/*
-* create the entity clients
+/** 
+* create the entity Tva
 * @TauxTva
 */
 @Entity()

@@ -10,7 +10,7 @@ export class TvaService {
 
   constructor(@InjectRepository(Tva) private tvaRepository: Repository<Tva>){}
 
-  /*
+  /** 
   * this function create new data
   * @params: createTvaDto
   */
@@ -28,7 +28,7 @@ export class TvaService {
     return await this.tvaRepository.find() ;
   }
 
-  /*
+  /** 
   * this function read the data
   * @params: id
   */

@@ -1,7 +1,7 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 
-/*
+/** 
 * create the entity fraisPort
 * @id
 * @libModeReglement

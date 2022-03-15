@@ -1,16 +1,18 @@
 import { IsEmail } from "class-validator";
+import { AdresseLivraison } from "src/adresse-livraison/entities/adresse-livraison.entity";
 import { 
     Column, 
     CreateDateColumn, 
     DeleteDateColumn, 
     Entity, 
+    ManyToOne, 
     OneToMany, 
     PrimaryGeneratedColumn, 
     Timestamp, 
     UpdateDateColumn 
 } from "typeorm";
 
-/*
+/** 
 * create the entity clients
 * @params
 * @societe
@@ -99,6 +101,9 @@ export class Client {
 
     @Column({ type: 'varchar', nullable: true })
     observation: string;
+
+    @OneToMany(() => AdresseLivraison, adresseAdresse => adresseAdresse.client)
+    adrLivraison: AdresseLivraison[];
 
     @CreateDateColumn({ name: 'created_at' })
     createdAt: Date;

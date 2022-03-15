@@ -8,8 +8,8 @@ import {
     UpdateDateColumn
 } from "typeorm";
 
-/*
-* create the entity clients
+/**
+* create the entity Societe
 * @params
 * @nom
 * @adresse

@@ -1,8 +1,8 @@
 import { IsNotEmpty } from "class-validator";
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
-/*
-* create the entity clients
+/**
+* create the entity ActionPossible
 * @LibAction
 */
 @Entity()
