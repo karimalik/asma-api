@@ -29,6 +29,9 @@ import { UsersModule } from './users/users.module';
 import { User } from './users/entities/user.entity';
 import { AdresseLivraisonModule } from './adresse-livraison/adresse-livraison.module';
 import { AdresseLivraison } from './adresse-livraison/entities/adresse-livraison.entity';
+import { AdresseFacturationModule } from './adresse-facturation/adresse-facturation.module';
+import { AdresseFacturation } from './adresse-facturation/entities/adresse-facturation.entity';
+
 
 const entities = [
   Client,
@@ -44,6 +47,7 @@ const entities = [
   Fournisseur,
   User,
   AdresseLivraison,
+  AdresseFacturation,
 
 ]
 @Module({
@@ -51,7 +55,7 @@ const entities = [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    /*
+    /** 
     * configuration & connection to the database
     * @type: mysql
     * @host: localhost
@@ -84,6 +88,7 @@ const entities = [
     FournisseurModule,
     UsersModule,
     AdresseLivraisonModule,
+    AdresseFacturationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

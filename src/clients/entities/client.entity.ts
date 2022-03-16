@@ -1,4 +1,5 @@
 import { IsEmail } from "class-validator";
+import { AdresseFacturation } from "src/adresse-facturation/entities/adresse-facturation.entity";
 import { AdresseLivraison } from "src/adresse-livraison/entities/adresse-livraison.entity";
 import { 
     Column, 
@@ -102,8 +103,11 @@ export class Client {
     @Column({ type: 'varchar', nullable: true })
     observation: string;
 
-    @OneToMany(() => AdresseLivraison, adresseAdresse => adresseAdresse.client)
-    adrLivraison: AdresseLivraison[];
+    @OneToMany(() => AdresseLivraison, adresseLivraison => adresseLivraison.client)
+    adrLivraison: AdresseFacturation[];
+
+    @OneToMany(() => AdresseLivraison, adresseFacturation => adresseFacturation.client)
+    adrFacturation: AdresseFacturation[];
 
     @CreateDateColumn({ name: 'created_at' })
     createdAt: Date;
