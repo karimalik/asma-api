@@ -22,7 +22,10 @@ export class ClientsController {
   */
   @Post()
   @UseGuards(JwtAuthGuard)
-  async create(@Body() createClientDto: CreateClientDto, @User() user) {
+  async create(
+    @Body() createClientDto: CreateClientDto, 
+    @User() user
+    ) {
 
     const client = await this.clientsService.create(createClientDto, user);
     return {

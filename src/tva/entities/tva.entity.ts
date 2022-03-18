@@ -1,8 +1,11 @@
 import { IsNotEmpty, IsNumber } from "class-validator";
+import { Produit } from "src/produit/entities/produit.entity";
 import { 
     Column, 
     CreateDateColumn, 
     Entity, 
+    ManyToOne, 
+    OneToMany, 
     PrimaryGeneratedColumn, 
     UpdateDateColumn 
 } from "typeorm";
@@ -19,6 +22,9 @@ export class Tva {
     @Column({ type: 'varchar', nullable: true, unique: true })
     @IsNotEmpty()
     TauxTva: string;
+
+    @OneToMany(() => Produit, produit => produit.TauxTva)
+    produit: Produit[];
 
     @CreateDateColumn({ name: 'created_at'})
     createdAt: Date;

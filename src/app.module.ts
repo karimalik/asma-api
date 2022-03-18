@@ -31,6 +31,8 @@ import { AdresseLivraisonModule } from './adresse-livraison/adresse-livraison.mo
 import { AdresseLivraison } from './adresse-livraison/entities/adresse-livraison.entity';
 import { AdresseFacturationModule } from './adresse-facturation/adresse-facturation.module';
 import { AdresseFacturation } from './adresse-facturation/entities/adresse-facturation.entity';
+import { ProduitModule } from './produit/produit.module';
+import { Produit } from './produit/entities/produit.entity';
 
 
 const entities = [
@@ -48,6 +50,7 @@ const entities = [
   User,
   AdresseLivraison,
   AdresseFacturation,
+  Produit,
 
 ]
 @Module({
@@ -89,6 +92,7 @@ const entities = [
     UsersModule,
     AdresseLivraisonModule,
     AdresseFacturationModule,
+    ProduitModule,
   ],
   controllers: [AppController],
   providers: [AppService],

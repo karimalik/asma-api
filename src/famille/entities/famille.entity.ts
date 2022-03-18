@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Produit } from "src/produit/entities/produit.entity";
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 /**
 * create the entity Famille
@@ -16,6 +17,12 @@ export class Famille {
 
     @Column({ type: 'varchar', nullable: true})
     libelle: string;
+
+    @ManyToOne(
+        () => Produit, 
+        produit => produit.codeFamille
+    )
+    produit: Produit[];
 
     @CreateDateColumn({ name: 'created_at' })
     createdAt: Date;

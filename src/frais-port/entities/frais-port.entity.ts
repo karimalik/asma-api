@@ -1,9 +1,11 @@
 import { IsNotEmpty } from "class-validator";
+import { Produit } from "src/produit/entities/produit.entity";
 import { Curry } from "src/utils/curry.enum";
 import { 
     Column, 
     CreateDateColumn, 
     Entity, 
+    OneToMany, 
     PrimaryGeneratedColumn, 
     UpdateDateColumn 
 } from "typeorm";
@@ -34,6 +36,9 @@ export class FraisPort {
 
     @Column({ type: 'enum', enum: Curry, default: Curry.CFA, nullable: true })
     curry: Curry;
+
+    @OneToMany(() => Produit, produit => produit.codePort)
+    produit: Produit;
 
     @CreateDateColumn({ name: 'created_at' })
     createdAt: Date;
