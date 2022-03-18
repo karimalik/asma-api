@@ -111,4 +111,14 @@ export class ProduitService {
 
     return { deleted: true };
   }
+
+  /**
+   * 
+   * @returns 
+   */
+  async getStatProduct() {
+    const qb = await this.produitRepository.createQueryBuilder("produit");
+
+    return await qb.select("count(produit.id) as nombreProduit").getRawMany();
+  }
 }

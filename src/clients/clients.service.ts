@@ -99,4 +99,10 @@ export class ClientsService {
 
     return restoreData;
   }
+
+  async ClientsStats() {
+    const qb = await this.clientRepository.createQueryBuilder("client");
+
+    return qb.select("count(client.id) as nombreClient").getRawMany();
+  }
 }

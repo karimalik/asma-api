@@ -35,6 +35,16 @@ export class ClientsController {
     };
   }
 
+  /**
+   * 
+   * @returns 
+   */
+  @Get('stats')
+  @UseGuards(JwtAuthGuard)
+  async clientStats() {
+    return await this.clientsService.ClientsStats();
+  }
+
   @Get()
   @UseGuards(JwtAuthGuard)
   async findAll() {

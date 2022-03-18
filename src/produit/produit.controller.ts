@@ -26,6 +26,16 @@ export class ProduitController {
     return await this.produitService.create(createProduitDto, user);
   }
 
+   /**
+   * 
+   * @returns 
+   */
+    @Get('stats')
+    @UseGuards(JwtAuthGuard)
+    async statsProduct() {
+      return await this.produitService.getStatProduct();
+    }
+
   /**
    * 
    * @returns 
