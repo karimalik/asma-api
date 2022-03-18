@@ -1,9 +1,10 @@
+import { EntreeStock } from "src/entree-stock/entities/entree-stock.entity";
 import { Famille } from "src/famille/entities/famille.entity";
 import { Fournisseur } from "src/fournisseur/entities/fournisseur.entity";
 import { FraisPort } from "src/frais-port/entities/frais-port.entity";
 import { Tva } from "src/tva/entities/tva.entity";
 import { Curry } from "src/utils/curry.enum";
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 /**
  * @id
@@ -121,6 +122,12 @@ export class Produit {
         {onDelete: 'SET NULL'}
     )
     codeFamille: Famille;
+
+    @OneToMany(
+        () => EntreeStock,
+        entreeStock => entreeStock.Reference,
+    )
+    EntreStock: EntreeStock[];
 
     @Column({ 
         type: 'enum', 
