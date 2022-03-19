@@ -1,6 +1,7 @@
 import { Fournisseur } from "src/fournisseur/entities/fournisseur.entity";
 import { Produit } from "src/produit/entities/produit.entity";
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Curry } from "src/utils/curry.enum";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 
 /**
@@ -19,16 +20,17 @@ export class EntreeStock {
     id: number;
 
     @Column({
-      type: 'date', 
+      type: 'varchar', 
       nullable: true, 
       name: 'dateAppro'
     })
-    dateAppro: Date;
+    dateAppro: string;
 
     @ManyToOne(
         () => Fournisseur,
         fournisseur => fournisseur.EntreStock,
-        {onDelete: 'SET NULL'}
+        {onDelete: 'SET NULL'},
+        
     )
     NumFournisseur: Fournisseur;
 
@@ -40,14 +42,22 @@ export class EntreeStock {
     Reference: Produit;
 
     @Column({
-        type: 'numeric', 
+        type: 'varchar', 
         nullable: true, 
         name: 'quantite'
     })
-    quantite: number;
+    quantite: string;
+
+    @Column({ 
+        type: 'enum', 
+        enum: Curry, 
+        default: Curry.CFA, 
+        nullable: true 
+    })
+    curry: Curry;
 
     @Column({
-      type: 'numeric', 
+      type: 'varchar', 
       nullable: true, 
       name: 'prixAchat'
     })
@@ -79,6 +89,6 @@ export class EntreeStock {
     @UpdateDateColumn({ name: 'updated_at' })
     updatedAt: Date;
 
-    @CreateDateColumn({ name: 'deleted_at' })
+    @DeleteDateColumn({ name: 'deleted_at' })
     deletedAt: Date;
 }

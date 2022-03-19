@@ -1,11 +1,12 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { Fournisseur } from "src/fournisseur/entities/fournisseur.entity";
 import { Produit } from "src/produit/entities/produit.entity";
+import { Curry } from "src/utils/curry.enum";
 
 export class CreateEntreeStockDto {
     
     @ApiProperty()
-    dateAppro: Date;
+    dateAppro: string;
   
     @ApiProperty()
     NumFournisseur: Fournisseur;
@@ -14,7 +15,7 @@ export class CreateEntreeStockDto {
     Reference: Produit;
 
     @ApiProperty()
-    quantite: number;
+    quantite: string;
 
     @ApiProperty()
     prixAchat: string;
@@ -24,4 +25,7 @@ export class CreateEntreeStockDto {
   
     @ApiProperty()
     AuteurModif: string;
+
+    @ApiProperty()
+    curry: Curry;
 }

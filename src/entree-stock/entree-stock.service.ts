@@ -1,15 +1,45 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateEntreeStockDto } from './dto/create-entree-stock.dto';
 import { UpdateEntreeStockDto } from './dto/update-entree-stock.dto';
+import { EntreeStock } from './entities/entree-stock.entity';
 
 @Injectable()
 export class EntreeStockService {
-  create(createEntreeStockDto: CreateEntreeStockDto) {
-    return 'This action adds a new entreeStock';
+
+  constructor(
+    @InjectRepository(EntreeStock)
+    private stockEntreRepository: Repository<EntreeStock>
+  ) {}
+  
+  /**
+   * 
+   * @param createEntreeStockDto 
+   * @param user 
+   * @returns 
+  */
+  async create(
+    createEntreeStockDto: CreateEntreeStockDto,
+    user
+    ): Promise<EntreeStock> {
+   
+    const createData = await this.stockEntreRepository.create({
+      ...createEntreeStockDto
+    });
+
+    createData.saisirPar = user.nom;
+
+    await this.stockEntreRepository.save(createData);
+
+    return createData;
   }
 
-  findAll() {
-    return `This action returns all entreeStock`;
+  
+  async findAll(): Promise<EntreeStock[]>  {
+    return await this.stockEntreRepository.find({ 
+      relations: ['NumFournisseur', 'Reference']
+    })
   }
 
   findOne(id: number) {
