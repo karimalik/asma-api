@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Put, HttpStatus } from '@nestjs/common';
 import { EntreeStockService } from './entree-stock.service';
 import { CreateEntreeStockDto } from './dto/create-entree-stock.dto';
 import { UpdateEntreeStockDto } from './dto/update-entree-stock.dto';
@@ -33,18 +33,46 @@ export class EntreeStockController {
     return await this.entreeStockService.findAll();
   }
 
+  /**
+   * 
+   * @param id 
+   * @returns 
+   */
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.entreeStockService.findOne(+id);
+  @UseGuards(JwtAuthGuard)
+  async findOne(@Param('id') id: string) {
+    return await this.entreeStockService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateEntreeStockDto: UpdateEntreeStockDto) {
-    return this.entreeStockService.update(+id, updateEntreeStockDto);
+  @Put(':id')
+  @UseGuards(JwtAuthGuard)
+  async update(
+    @Param('id') id: string, 
+    @Body() updateEntreeStockDto: UpdateEntreeStockDto,
+    @User() user
+    ) {
+    await this.entreeStockService.update(+id, updateEntreeStockDto, user);
+
+    return {
+      statusCode: HttpStatus.OK,
+      message: 'data updated successfully'
+    };
   }
 
+  /**
+   * 
+   * @param id 
+   * @returns 
+   */
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.entreeStockService.remove(+id);
+  @UseGuards(JwtAuthGuard)
+  async remove(@Param('id') id: string) {
+
+    await this.entreeStockService.remove(+id);
+
+    return {
+      statusCode: HttpStatus.OK,
+      message: 'data deleted successfully'
+    };
   }
 }

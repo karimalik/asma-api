@@ -35,6 +35,8 @@ import { ProduitModule } from './produit/produit.module';
 import { Produit } from './produit/entities/produit.entity';
 import { EntreeStockModule } from './entree-stock/entree-stock.module';
 import { EntreeStock } from './entree-stock/entities/entree-stock.entity';
+import { StocksModule } from './stocks/stocks.module';
+import { Stock } from './stocks/entities/stock.entity';
 
 
 const entities = [
@@ -54,6 +56,7 @@ const entities = [
   AdresseFacturation,
   Produit,
   EntreeStock,
+  Stock,
 
 ]
 @Module({
@@ -97,6 +100,7 @@ const entities = [
     AdresseFacturationModule,
     ProduitModule,
     EntreeStockModule,
+    StocksModule,
   ],
   controllers: [AppController],
   providers: [AppService],
