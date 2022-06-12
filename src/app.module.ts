@@ -27,10 +27,6 @@ import { FournisseurModule } from './fournisseur/fournisseur.module';
 import { Fournisseur } from './fournisseur/entities/fournisseur.entity';
 import { UsersModule } from './users/users.module';
 import { User } from './users/entities/user.entity';
-import { AdresseLivraisonModule } from './adresse-livraison/adresse-livraison.module';
-import { AdresseLivraison } from './adresse-livraison/entities/adresse-livraison.entity';
-import { AdresseFacturationModule } from './adresse-facturation/adresse-facturation.module';
-import { AdresseFacturation } from './adresse-facturation/entities/adresse-facturation.entity';
 import { ProduitModule } from './produit/produit.module';
 import { Produit } from './produit/entities/produit.entity';
 import { EntreeStockModule } from './entree-stock/entree-stock.module';
@@ -52,8 +48,6 @@ const entities = [
   ModeReglement,
   Fournisseur,
   User,
-  AdresseLivraison,
-  AdresseFacturation,
   Produit,
   EntreeStock,
   Stock,
@@ -96,8 +90,6 @@ const entities = [
     ModeReglementModule,
     FournisseurModule,
     UsersModule,
-    AdresseLivraisonModule,
-    AdresseFacturationModule,
     ProduitModule,
     EntreeStockModule,
     StocksModule,
