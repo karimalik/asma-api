@@ -33,8 +33,6 @@ import {
 * @exemptTVA
 * @saisirPar
 * @saisirLe
-* @AuteurModif
-* @dateModif
 * @observation
 */
 @Entity()
